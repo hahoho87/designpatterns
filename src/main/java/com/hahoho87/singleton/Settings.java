@@ -9,14 +9,12 @@ public class Settings {
     private Settings() {
     }
 
+    // static inner class 활용
+    private static class SettingsHolder {
+        private static final Settings SETTINGS = new Settings();
+    }
+
     public static synchronized Settings getInstance() {
-        if (instance == null) {
-            synchronized (Settings.class) {
-                if (instance == null) {
-                    instance = new Settings();
-                }
-            }
-        }
-        return instance;
+        return SettingsHolder.SETTINGS;
     }
 }
